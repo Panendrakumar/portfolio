@@ -168,7 +168,6 @@
             </ul>
         </nav>
     </header>
-
     <section id="home" class="section" data-aos="fade-in">
         <div class="content">
             <h1>Welcome to My Portfolio</h1>
@@ -212,11 +211,12 @@
     <section id="contact" class="section" data-aos="fade-up">
         <div class="content">
             <h2>Contact Me</h2>
-            <form>
-                <input type="text" placeholder="Your Name" required>
-                <input type="email" placeholder="Your Email" required>
-                <textarea placeholder="Your Message" required></textarea>
+            <form id="contactForm" action="https://formspree.io/f/mkgwopeo" method="POST">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" id="email" name="_replyto" placeholder="Your Email" required>
+                <textarea name="message" placeholder="Your Message" required></textarea>
                 <button type="submit">Send</button>
+                <div id="error-message" style="color: red; display: none;">Please enter a valid email address.</div>
             </form>
         </div>
     </section>
@@ -240,44 +240,24 @@
             gsap.from('#home h1', { duration: 1, opacity: 0, y: 50 });
             gsap.from('#home p', { duration: 1, opacity: 0, y: 50, delay: 0.5 });
 
-            // Home section floating animation
-            gsap.to('#home .content', {
-                y: 10,
-                repeat: -1,
-                yoyo: true,
-                ease: 'power1.inOut',
-                duration: 2
-            });
-
-            // Home section content animation
+            // Home section animation
             gsap.from('.content', { duration: 1, opacity: 0, y: 50, stagger: 0.3 });
-        });
-    </script>
-    <script>
-        document.querySelector('form').addEventListener('submit', function(event) {
-            event.preventDefault();
-            
-            const name = document.querySelector('input[placeholder="Your Name"]').value;
-            const email = document.querySelector('input[placeholder="Your Email"]').value;
-            const message = document.querySelector('textarea[placeholder="Your Message"]').value;
-    
-            fetch('http://localhost:3000/send', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ name, email, message })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.status === 'success') {
-                    alert('Message sent successfully!');
+
+            // Email validation
+            const form = document.getElementById('contactForm');
+            const emailInput = document.getElementById('email');
+            const errorMessage = document.getElementById('error-message');
+
+            form.addEventListener('submit', (event) => {
+                const email = emailInput.value;
+                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+                if (!emailPattern.test(email)) {
+                    errorMessage.style.display = 'block';
+                    event.preventDefault();
                 } else {
-                    alert('Message failed to send.');
+                    errorMessage.style.display = 'none';
                 }
-            })
-            .catch(error => {
-                console.error('Error:', error);
             });
         });
     </script>
