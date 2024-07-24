@@ -6,31 +6,27 @@ const cors = require('cors');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Middleware
 app.use(bodyParser.json());
 app.use(cors());
 
 app.post('/send', (req, res) => {
     const { name, email, message } = req.body;
 
-    // Configure the transporter
     const transporter = nodemailer.createTransport({
-        service: 'gmail', // Use your email provider here
+        service: 'gmail',
         auth: {
-            user: 'your-email@gmail.com', // Your email
-            pass: 'your-email-password' // Your email password
+            user: 'your-email@gmail.com',
+            pass: 'your-email-password'
         }
     });
 
-    // Configure the mail options
     const mailOptions = {
         from: email,
-        to: 'your-email@gmail.com', // Your email where you want to receive the messages
+        to: 'your-email@gmail.com',
         subject: `Message from ${name}`,
         text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`
     };
 
-    // Send the email
     transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
             return res.status(500).json({ status: 'fail' });
