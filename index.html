@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panendra Kumar - Portfolio</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f0f0f0;
+            color: #333;
+        }
+
+        header {
+            background: #333;
+            color: white;
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 5px 10px;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        nav ul li a:hover {
+            background: #555;
+            color: #fff;
+            border-radius: 5px;
+        }
+
+        .section {
+            padding: 100px 20px;
+            text-align: center;
+            margin-top: 60px;
+            background: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            margin: 20px 10px;
+        }
+
+        .section:nth-child(even) {
+            background: #f9f9f9;
+        }
+
+        #home {
+            background: url('background.jpg') no-repeat center center/cover;
+            color: white;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        #home .content {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        #projects .project-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .project-grid a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .project-grid .project {
+            background: white;
+            border: 1px solid #ddd;
+            margin: 10px;
+            padding: 20px;
+            width: 300px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .project-grid .project:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        form input, form textarea {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        form button {
+            padding: 10px 20px;
+            border: none;
+            background: #333;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        form button:hover {
+            background: #555;
+            transform: translateY(-2px);
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="section" data-aos="fade-in">
+        <div class="content">
+            <h1>Welcome to My Portfolio</h1>
+            <p>Hi, I'm Panendra Kumar, a B-Tech student in ECE Branch</p>
+        </div>
+    </section>
+
+    <section id="about" class="section" data-aos="fade-up">
+        <div class="content">
+            <h2>About Me</h2>
+            <p>I'm a B-Tech student in VIT-AP University, pursuing my career in ECE Branch. I am also interested in web development and have created some websites using HTML, CSS, and JavaScript. Check out my websites by clicking on the links below.</p>
+        </div>
+    </section>
+
+    <section id="projects" class="section" data-aos="fade-up">
+        <div class="content">
+            <h2>My Projects</h2>
+            <div class="project-grid">
+                <a href="https://logan444yt.netlify.app" target="_blank">
+                    <div class="project" data-aos="zoom-in">
+                        <h3>Project 1</h3>
+                        <p>Click here to redirect to my first website</p>
+                    </div>
+                </a>
+                <a href="https://www.instagram.com/itz_panendra__27/" target="_blank">
+                    <div class="project" data-aos="zoom-in">
+                        <h3>Instagram Handle</h3>
+                        <p>Click here to visit my Instagram profile</p>
+                    </div>
+                </a>
+                <a href="https://www.linkedin.com/in/panendra-kumar-1601ba290/" target="_blank">
+                    <div class="project" data-aos="zoom-in">
+                        <h3>LinkedIn Handle</h3>
+                        <p>Click here to visit my LinkedIn profile</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section" data-aos="fade-up">
+        <div class="content">
+            <h2>Contact Me</h2>
+            <form>
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <textarea placeholder="Your Message" required></textarea>
+                <button type="submit">Send</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Panendra Kumar. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            AOS.init({
+                duration: 1000,
+                easing: 'ease-in-out',
+                once: true
+            });
+
+            // GSAP Animations
+            gsap.from('nav ul li', { duration: 1, opacity: 0, y: -20, stagger: 0.2 });
+            gsap.from('#home h1', { duration: 1, opacity: 0, y: 50 });
+            gsap.from('#home p', { duration: 1, opacity: 0, y: 50, delay: 0.5 });
+
+            // Home section floating animation
+            gsap.to('#home .content', {
+                y: 10,
+                repeat: -1,
+                yoyo: true,
+                ease: 'power1.inOut',
+                duration: 2
+            });
+
+            // Home section content animation
+            gsap.from('.content', { duration: 1, opacity: 0, y: 50, stagger: 0.3 });
+        });
+    </script>
+    <script>
+        document.querySelector('form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const name = document.querySelector('input[placeholder="Your Name"]').value;
+            const email = document.querySelector('input[placeholder="Your Email"]').value;
+            const message = document.querySelector('textarea[placeholder="Your Message"]').value;
+    
+            fetch('http://localhost:3000/send', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ name, email, message })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    alert('Message sent successfully!');
+                } else {
+                    alert('Message failed to send.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
+</body>
+</html>
