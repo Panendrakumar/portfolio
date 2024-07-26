@@ -63,6 +63,7 @@
         .section:nth-child(even) {
             background: #f9f9f9;
         }
+
         #home {
             background: url('background.jpg') no-repeat center center/cover;
             color: white;
@@ -73,12 +74,11 @@
             text-align: center;
         }
 
-         #home .content {
+        #home .content {
             background: rgba(0, 0, 0, 0.6);
             padding: 20px;
             border-radius: 10px;
         }
-
 
         #projects .project-grid {
             display: flex;
@@ -154,6 +154,35 @@
             margin: 0;
             font-size: 14px;
         }
+
+        /* Styles for the video player modal */
+        #videoModal {
+            display: none;
+            position: fixed;
+            z-index: 1001;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+
+        #videoModal iframe {
+            width: 80%;
+            height: 80%;
+        }
+
+        #videoModal .close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -204,6 +233,11 @@
                         <p>Click here to visit my LinkedIn profile</p>
                     </div>
                 </a>
+                <!-- New Projects with YouTube videos -->
+                <div class="project" data-aos="zoom-in">
+                    <h3>Video Project 1</h3>
+                    <img src="https://youtu.be/8ihDpiYYuLY?si=cyuF_tnC295AyzI-" alt="Video Project 1" class="video-thumbnail" data-video-id="8ihDpiYYuLY">
+                </div>
             </div>
         </div>
     </section>
@@ -215,48 +249,46 @@
                 <input type="text" name="name" placeholder="Your Name" required>
                 <input type="email" id="email" name="_replyto" placeholder="Your Email" required>
                 <textarea name="message" placeholder="Your Message" required></textarea>
-                <button type="submit">Send</button>
-                <div id="error-message" style="color: red; display: none;">Please enter a valid email address.</div>
+                <button type="submit">Send Message</button>
             </form>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2024 Panendra Kumar. All rights reserved.</p>
+        <p>&copy; 2023 Panendra Kumar. All rights reserved.</p>
     </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <!-- Video Modal -->
+    <div id="videoModal">
+        <span class="close">&times;</span>
+        <iframe id="videoPlayer" frameborder="0" allowfullscreen></iframe>
+    </div>
+
     <script>
+        // JavaScript to handle video playing in the modal
         document.addEventListener('DOMContentLoaded', () => {
-            AOS.init({
-                duration: 1000,
-                easing: 'ease-in-out',
-                once: true
+            const videoThumbnails = document.querySelectorAll('.video-thumbnail');
+            const videoModal = document.getElementById('videoModal');
+            const videoPlayer = document.getElementById('videoPlayer');
+            const closeModal = document.querySelector('.close');
+
+            videoThumbnails.forEach(thumbnail => {
+                thumbnail.addEventListener('click', () => {
+                    const videoId = thumbnail.getAttribute('data-video-id');
+                    videoPlayer.src = `https://www.youtube.com/embed/${videoId}`;
+                    videoModal.style.display = 'flex';
+                });
             });
 
-            // GSAP Animations
-            gsap.from('nav ul li', { duration: 1, opacity: 0, y: -20, stagger: 0.2 });
-            gsap.from('#home h1', { duration: 1, opacity: 0, y: 50 });
-            gsap.from('#home p', { duration: 1, opacity: 0, y: 50, delay: 0.5 });
+            closeModal.addEventListener('click', () => {
+                videoPlayer.src = '';
+                videoModal.style.display = 'none';
+            });
 
-            // Home section animation
-            gsap.from('.content', { duration: 1, opacity: 0, y: 50, stagger: 0.3 });
-
-            // Email validation
-            const form = document.getElementById('contactForm');
-            const emailInput = document.getElementById('email');
-            const errorMessage = document.getElementById('error-message');
-
-            form.addEventListener('submit', (event) => {
-                const email = emailInput.value;
-                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-                if (!emailPattern.test(email)) {
-                    errorMessage.style.display = 'block';
-                    event.preventDefault();
-                } else {
-                    errorMessage.style.display = 'none';
+            window.addEventListener('click', (e) => {
+                if (e.target === videoModal) {
+                    videoPlayer.src = '';
+                    videoModal.style.display = 'none';
                 }
             });
         });
